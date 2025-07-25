@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Literacy Hub | CredAble+</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f1f5f9;
+        }
+        .course-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .progress-bar {
+            background-color: #e5e7eb;
+            border-radius: 9999px;
+            overflow: hidden;
+        }
+        .progress-bar-fill {
+            height: 100%;
+            background-color: #3b82f6;
+            border-radius: 9999px;
+            transition: width 0.5s ease-in-out;
+        }
+        .ai-response-container {
+            min-height: 100px;
+        }
+        .skeleton-pulse {
+            display: inline-block;
+            height: 1rem;
+            width: 100%;
+            background: linear-gradient(-90deg, #f0f0f0 0%, #fafafa 50%, #f0f0f0 100%);
+            background-size: 400% 400%;
+            animation: pulse 1.2s ease-in-out infinite;
+            border-radius: 4px;
+        }
+        @keyframes pulse {
+            0% { background-position: 0% 0%; }
+            100% { background-position: -135% 0%; }
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <!-- Header -->
+    <header class="bg-white/80 backdrop-blur-lg sticky top-0 z-50 shadow-sm">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="./index.html" class="text-2xl font-bold text-gray-900">CredAble<span class="text-blue-600">+</span></a>
+            <div class="hidden md:flex items-center space-x-6">
+                <a href="./index.html#features" class="text-gray-600 hover:text-blue-600" data-key="nav_features">Features</a>
+                <a href="./dashboard.html" class="text-gray-600 hover:text-blue-600" data-key="nav_dashboard">Dashboard</a>
+                <a href="./literacy-hub.html" class="text-blue-600 font-semibold hover:text-blue-600" data-key="nav_literacy">Literacy Hub</a>
+                
+                <!-- Language/Region Selector -->
+                <div class="relative">
+                    <select id="language-selector" class="appearance-none bg-gray-100 border border-gray-300 rounded-md py-2 pl-3 pr-8 text-sm font-medium text-gray-700 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <option value="en-US">🇺🇸 English (US)</option>
+                        <option value="de-DE">🇩🇪 Deutsch (DE)</option>
+                        <option value="es-MX">🇲🇽 Español (MX)</option>
+                    </select>
+                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                        <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+                    </div>
+                </div>
+            </div>
+             <a href="./index.html#cta" class="hidden md:inline-block bg-blue-600 text-white font-semibold px-5 py-2 rounded-lg hover:bg-blue-700 transition-colors" data-key="nav_get_access">Get Early Access</a>
+        </nav>
+    </header>
+
+    <!-- Literacy Hub Main Content -->
+    <main class="container mx-auto px-6 py-12">
+        <h1 class="text-3xl md:text-4xl font-bold text-gray-900" data-key="literacy_title">Financial Literacy Hub</h1>
+        <p class="text-lg text-gray-600 mt-2 mb-8" data-key="literacy_subtitle">Your personalized journey to financial mastery. Gamified, localized, and tailored just for you.</p>
+
+        <!-- Your Learning Path -->
+        <div class="mb-12">
+            <h2 class="text-2xl font-bold text-gray-900 mb-4" data-key="literacy_path_title">Your Learning Path</h2>
+            <div class="bg-white p-6 rounded-xl shadow-lg">
+                <div class="flex flex-col md:flex-row items-center gap-6">
+                    <div class="text-center">
+                        <p class="text-sm text-gray-500" data-key="literacy_level">Current Level</p>
+                        <p class="text-2xl font-bold text-blue-600" data-key="literacy_level_value">Novice</p>
+                    </div>
+                    <div class="w-full flex-1">
+                        <p class="text-sm font-semibold mb-1" data-key="literacy_next_level">Next Level: Budgeting Pro</p>
+                        <div class="progress-bar h-4">
+                            <div class="progress-bar-fill" style="width: 40%;"></div>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <p class="text-sm text-gray-500" data-key="literacy_points">Points</p>
+                        <p class="text-2xl font-bold text-blue-600">1,250</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Your Badges -->
+        <div class="mb-12">
+            <h2 class="text-2xl font-bold text-gray-900 mb-4" data-key="badges_title">Your Badges</h2>
+            <div class="bg-white p-6 rounded-xl shadow-lg">
+                <div class="flex flex-wrap justify-center gap-6">
+                    <!-- Badge 1 (Unlocked) -->
+                    <div class="text-center">
+                        <div class="w-24 h-24 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-2">
+                            <svg class="w-12 h-12 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path></svg>
+                        </div>
+                        <p class="font-semibold text-gray-700" data-key="badge1_name">Debt Manager</p>
+                    </div>
+                    <!-- Badge 2 (Locked) -->
+                    <div class="text-center opacity-50">
+                        <div class="w-24 h-24 rounded-full bg-gray-200 flex items-center justify-center mx-auto mb-2">
+                            <svg class="w-12 h-12 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+                        </div>
+                        <p class="font-semibold text-gray-500" data-key="badge2_name">Budgeting Pro</p>
+                    </div>
+                    <!-- Badge 3 (Locked) -->
+                    <div class="text-center opacity-50">
+                        <div class="w-24 h-24 rounded-full bg-gray-200 flex items-center justify-center mx-auto mb-2">
+                           <svg class="w-12 h-12 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
+                        </div>
+                        <p class="font-semibold text-gray-500" data-key="badge3_name">Savings Starter</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- AI Financial Dictionary -->
+        <div class="mt-12">
+            <h2 class="text-2xl font-bold text-gray-900 mb-4" data-key="ai_dictionary_title">AI-Powered Financial Dictionary</h2>
+            <div class="bg-white p-6 rounded-xl shadow-lg">
+                <div class="grid md:grid-cols-3 gap-4 mb-4">
+                    <div class="md:col-span-2">
+                        <label for="term-input" class="block text-sm font-medium text-gray-700" data-key="ai_term_label">Financial Term</label>
+                        <input type="text" id="term-input" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500" placeholder="e.g., APR, Compound Interest...">
+                    </div>
+                    <div>
+                        <label for="persona-selector" class="block text-sm font-medium text-gray-700" data-key="ai_persona_label">Explain it to me...</label>
+                        <select id="persona-selector" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                            <option value="simply" data-key="persona_simply">...simply</option>
+                            <option value="like I'm 15" data-key="persona_teen">...like I'm 15</option>
+                            <option value="for my small business" data-key="persona_sme">...for my small business</option>
+                        </select>
+                    </div>
+                </div>
+                <button id="explain-button" class="w-full bg-blue-600 text-white font-semibold py-3 rounded-lg hover:bg-blue-700 transition-colors" data-key="ai_explain_button">Explain with AI</button>
+                
+                <div id="ai-response-container" class="mt-6 p-4 bg-gray-50 rounded-lg ai-response-container">
+                    <p id="ai-placeholder" class="text-gray-500 text-center" data-key="ai_placeholder">Your AI-powered explanation will appear here.</p>
+                    <div id="ai-loading-state" class="hidden space-y-2">
+                        <div class="skeleton-pulse w-3/4"></div>
+                        <div class="skeleton-pulse w-full"></div>
+                        <div class="skeleton-pulse w-5/6"></div>
+                    </div>
+                    <p id="ai-response-text" class="text-gray-700"></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Course Catalog -->
+        <div class="mt-12">
+            <h2 class="text-2xl font-bold text-gray-900 mb-4" data-key="literacy_catalog_title">Course Catalog</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Course Cards -->
+                <div class="bg-white rounded-xl shadow-md transition-all course-card p-6 flex flex-col">
+                    <h3 class="text-xl font-bold mb-2" data-key="course_budget_title">Budgeting 101</h3>
+                    <p class="text-gray-600 mb-4 flex-grow" data-key="course_budget_desc">Learn the fundamentals of creating and sticking to a personal budget.</p>
+                    <div class="progress-bar h-2 mb-2"><div class="progress-bar-fill" style="width: 75%;"></div></div>
+                    <div class="text-sm text-gray-500 flex justify-between"><span data-key="course_status_inprogress">In Progress</span><span>75%</span></div>
+                </div>
+                <div class="bg-white rounded-xl shadow-md transition-all course-card p-6 flex flex-col">
+                    <h3 class="text-xl font-bold mb-2" data-key="course_saving_title">Intro to Saving & Investing</h3>
+                    <p class="text-gray-600 mb-4 flex-grow" data-key="course_saving_desc">Discover different ways to make your money grow, from savings accounts to stocks.</p>
+                    <div class="progress-bar h-2 mb-2"><div class="progress-bar-fill" style="width: 0%;"></div></div>
+                    <div class="text-sm text-gray-500 flex justify-between"><span data-key="course_status_notstarted">Not Started</span><span>0%</span></div>
+                </div>
+                <div class="bg-white rounded-xl shadow-md transition-all course-card p-6 flex flex-col">
+                    <h3 class="text-xl font-bold mb-2" data-key="course_debt_title">Managing Debt Effectively</h3>
+                    <p class="text-gray-600 mb-4 flex-grow" data-key="course_debt_desc">Strategies for understanding and reducing debt, from credit cards to personal loans.</p>
+                     <div class="progress-bar h-2 mb-2"><div class="progress-bar-fill bg-green-500" style="width: 100%;"></div></div>
+                    <div class="text-sm text-green-600 font-semibold flex justify-between"><span data-key="course_status_completed">Completed!</span><span>+200 pts</span></div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script type="module">
+        // --- Language and Localization ---
+        const translations = {
+            'en-US': {
+                nav_features: 'Features', nav_dashboard: 'Dashboard', nav_literacy: 'Literacy Hub', nav_get_access: 'Get Early Access',
+                literacy_title: 'Financial Literacy Hub',
+                literacy_subtitle: 'Your personalized journey to financial mastery. Gamified, localized, and tailored just for you.',
+                literacy_path_title: 'Your Learning Path',
+                literacy_level: 'Current Level',
+                literacy_level_value: 'Novice',
+                literacy_next_level: 'Next Level: Budgeting Pro',
+                literacy_points: 'Points',
+                badges_title: 'Your Badges',
+                badge1_name: 'Debt Manager',
+                badge2_name: 'Budgeting Pro',
+                badge3_name: 'Savings Starter',
+                literacy_catalog_title: 'Course Catalog',
+                course_budget_title: 'Budgeting 101',
+                course_budget_desc: 'Learn the fundamentals of creating and sticking to a personal budget.',
+                course_saving_title: 'Intro to Saving & Investing',
+                course_saving_desc: 'Discover different ways to make your money grow, from savings accounts to stocks.',
+                course_debt_title: 'Managing Debt Effectively',
+                course_debt_desc: 'Strategies for understanding and reducing debt, from credit cards to personal loans.',
+                course_sme_title: 'SME Finance Basics',
+                course_sme_desc: 'Essential financial planning for small business owners, from cash flow to funding.',
+                course_tax_title: 'Understanding Your Taxes',
+                course_tax_desc: 'A simple guide to income tax for freelancers and individuals in the US.',
+                course_status_inprogress: 'In Progress',
+                course_status_notstarted: 'Not Started',
+                course_status_completed: 'Completed!',
+                ai_dictionary_title: 'AI-Powered Financial Dictionary',
+                ai_term_label: 'Financial Term',
+                ai_persona_label: 'Explain it to me...',
+                persona_simply: '...simply',
+                persona_teen: "...like I'm 15",
+                persona_sme: '...for my small business',
+                ai_explain_button: 'Explain with AI',
+                ai_placeholder: 'Your AI-powered explanation will appear here.',
+                ai_loading: 'Generating explanation...',
+                ai_error: 'Sorry, I couldn\'t fetch an explanation. Please try again.',
+            },
+            'de-DE': {
+                nav_features: 'Funktionen', nav_dashboard: 'Dashboard', nav_literacy: 'Lernzentrum', nav_get_access: 'Frühzugang erhalten',
+                literacy_title: 'Zentrum für Finanzwissen',
+                literacy_subtitle: 'Ihre persönliche Reise zur finanziellen Meisterschaft. Spielerisch, lokalisiert und auf Sie zugeschnitten.',
+                literacy_path_title: 'Ihr Lernpfad',
+                literacy_level: 'Aktuelles Level',
+                literacy_level_value: 'Anfänger',
+                literacy_next_level: 'Nächstes Level: Budget-Profi',
+                literacy_points: 'Punkte',
+                badges_title: 'Ihre Abzeichen',
+                badge1_name: 'Schulden-Manager',
+                badge2_name: 'Budget-Profi',
+                badge3_name: 'Spar-Anfänger',
+                literacy_catalog_title: 'Kurskatalog',
+                course_budget_title: 'Budgetierung 101',
+                course_budget_desc: 'Lernen Sie die Grundlagen der Erstellung und Einhaltung eines persönlichen Budgets.',
+                course_saving_title: 'Einführung in Sparen & Investieren',
+                course_saving_desc: 'Entdecken Sie verschiedene Möglichkeiten, Ihr Geld zu vermehren, von Sparkonten bis zu Aktien.',
+                course_debt_title: 'Schulden effektiv verwalten',
+                course_debt_desc: 'Strategien zum Verständnis und Abbau von Schulden, von Kreditkarten bis zu Privatkrediten.',
+                course_status_inprogress: 'In Bearbeitung',
+                course_status_notstarted: 'Nicht begonnen',
+                course_status_completed: 'Abgeschlossen!',
+                ai_dictionary_title: 'KI-gestütztes Finanzwörterbuch',
+                ai_term_label: 'Finanzbegriff',
+                ai_persona_label: 'Erkläre es mir...',
+                persona_simply: '...einfach',
+                persona_teen: '...als wäre ich 15',
+                persona_sme: '...für mein kleines Unternehmen',
+                ai_explain_button: 'Mit KI erklären',
+                ai_placeholder: 'Ihre KI-gestützte Erklärung wird hier erscheinen.',
+                ai_loading: 'Erklärung wird generiert...',
+                ai_error: 'Entschuldigung, ich konnte keine Erklärung abrufen. Bitte versuchen Sie es erneut.',
+            },
+            'es-MX': {
+                nav_features: 'Características', nav_dashboard: 'Tablero', nav_literacy: 'Centro de Alfabetización', nav_get_access: 'Obtener Acceso',
+                literacy_title: 'Centro de Alfabetización Financiera',
+                literacy_subtitle: 'Tu viaje personalizado hacia la maestría financiera. Gamificado, localizado y hecho a tu medida.',
+                literacy_path_title: 'Tu Ruta de Aprendizaje',
+                literacy_level: 'Nivel Actual',
+                literacy_level_value: 'Novato',
+                literacy_next_level: 'Siguiente Nivel: Profesional del Presupuesto',
+                literacy_points: 'Puntos',
+                badges_title: 'Tus Insignias',
+                badge1_name: 'Gestor de Deudas',
+                badge2_name: 'Profesional del Presupuesto',
+                badge3_name: 'Iniciador de Ahorros',
+                literacy_catalog_title: 'Catálogo de Cursos',
+                course_budget_title: 'Presupuesto 101',
+                course_budget_desc: 'Aprende los fundamentos para crear y seguir un presupuesto personal.',
+                course_saving_title: 'Introducción al Ahorro e Inversión',
+                course_saving_desc: 'Descubre diferentes formas de hacer crecer tu dinero, desde cuentas de ahorro hasta acciones.',
+                course_debt_title: 'Manejo Efectivo de Deudas',
+                course_debt_desc: 'Estrategias para comprender y reducir deudas, desde tarjetas de crédito hasta préstamos personales.',
+                course_status_inprogress: 'En Progreso',
+                course_status_notstarted: 'No Iniciado',
+                course_status_completed: '¡Completado!',
+                ai_dictionary_title: 'Diccionario Financiero con IA',
+                ai_term_label: 'Término Financiero',
+                ai_persona_label: 'Explícamelo...',
+                persona_simply: '...de forma sencilla',
+                persona_teen: '...como si tuviera 15 años',
+                persona_sme: '...para mi pequeña empresa',
+                ai_explain_button: 'Explicar con IA',
+                ai_placeholder: 'Tu explicación impulsada por IA aparecerá aquí.',
+                ai_loading: 'Generando explicación...',
+                ai_error: 'Lo siento, no pude obtener una explicación. Por favor, inténtalo de nuevo.',
+            }
+        };
+
+        const languageSelector = document.getElementById('language-selector');
+        
+        function setLanguage(lang) {
+            const translation = translations[lang];
+            if (!translation) return;
+
+            document.querySelectorAll('[data-key]').forEach(element => {
+                const key = element.getAttribute('data-key');
+                if (translation[key]) {
+                    element.textContent = translation[key];
+                }
+            });
+            
+            const regionName = lang.split('-')[1];
+            let regionFullName = 'the US';
+            if (regionName === 'DE') regionFullName = 'Deutschland';
+            if (regionName === 'MX') regionFullName = 'México';
+            
+            document.querySelectorAll('.region-name').forEach(el => {
+                el.textContent = regionFullName;
+            });
+
+            languageSelector.value = lang;
+            localStorage.setItem('credable-lang', lang);
+        }
+
+        languageSelector.addEventListener('change', (e) => {
+            setLanguage(e.target.value);
+        });
+
+        const savedLang = localStorage.getItem('credable-lang') || 'en-US';
+        setLanguage(savedLang);
+
+        // --- AI Dictionary Logic ---
+        const explainButton = document.getElementById('explain-button');
+        const termInput = document.getElementById('term-input');
+        const personaSelector = document.getElementById('persona-selector');
+        const aiResponseContainer = document.getElementById('ai-response-container');
+        const aiPlaceholder = document.getElementById('ai-placeholder');
+        const aiLoadingState = document.getElementById('ai-loading-state');
+        const aiResponseText = document.getElementById('ai-response-text');
+
+        explainButton.addEventListener('click', async () => {
+            const term = termInput.value.trim();
+            const persona = personaSelector.value;
+            const lang = languageSelector.value;
+
+            if (!term) {
+                alert('Please enter a term to explain.');
+                return;
+            }
+
+            // Show loading state
+            aiPlaceholder.classList.add('hidden');
+            aiResponseText.textContent = '';
+            aiLoadingState.classList.remove('hidden');
+            explainButton.disabled = true;
+            explainButton.classList.add('opacity-50', 'cursor-not-allowed');
+
+            // Construct the prompt for the Gemini API
+            const prompt = `Explain the financial term "${term}" in a simple, clear, and easy-to-understand way. The explanation should be tailored for the following persona: "${persona}". Keep the explanation concise, around 2-4 sentences. If the term is not a financial term, politely state that you can only explain financial concepts. The response should be in the language with this code: ${lang}.`;
+            
+            try {
+                // --- SIMULATED GEMINI API CALL ---
+                console.log("Sending prompt to Gemini:", prompt);
+                
+                await new Promise(resolve => setTimeout(resolve, 1500)); // Simulate network delay
+
+                const mockApiResponse = {
+                    'en-US': `Of course! For a persona like "${persona}", here's a simple explanation of **${term}**: Think of it like a trust score for money. When you pay your bills on time, your score goes up, showing banks you're reliable. A higher score makes it easier and cheaper to borrow money for big things, like a car or a house!`,
+                    'de-DE': `Gerne! Für eine Persona wie "${persona}", hier ist eine einfache Erklärung für **${term}**: Stellen Sie es sich wie einen Vertrauenswert für Geld vor. Wenn Sie Ihre Rechnungen pünktlich bezahlen, steigt Ihr Score und zeigt den Banken, dass Sie zuverlässig sind. Ein höherer Score macht es einfacher und günstiger, Geld für große Dinge wie ein Auto oder ein Haus zu leihen!`,
+                    'es-MX': `¡Claro! Para una persona como "${persona}", aquí tienes una explicación sencilla de **${term}**: Piénsalo como un puntaje de confianza para el dinero. Cuando pagas tus cuentas a tiempo, tu puntaje sube, demostrando a los bancos que eres confiable. ¡Un puntaje más alto hace que sea más fácil y barato pedir dinero prestado para cosas grandes, como un coche o una casa!`,
+                };
+                
+                const text = mockApiResponse[lang] || mockApiResponse['en-US'];
+                // --- END OF SIMULATION ---
+
+                aiResponseText.innerHTML = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>'); // Make bold text
+            
+            } catch (error) {
+                console.error("Error fetching explanation:", error);
+                const errorKey = 'ai_error';
+                aiResponseText.textContent = translations[lang][errorKey] || translations['en-US'][errorKey];
+            } finally {
+                // Hide loading state and restore button
+                aiLoadingState.classList.add('hidden');
+                explainButton.disabled = false;
+                explainButton.classList.remove('opacity-50', 'cursor-not-allowed');
+            }
+        });
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | CredAble+</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f1f5f9; /* A slightly cooler gray */
+        }
+        .gauge-container {
+            position: relative;
+            width: 300px;
+            height: 150px;
+            overflow: hidden;
+        }
+        .gauge-bg, .gauge-fill {
+            fill: none;
+            stroke-width: 30;
+            stroke-linecap: round;
+        }
+        .gauge-bg {
+            stroke: #e5e7eb;
+        }
+        .gauge-text {
+            font-size: 4rem;
+            font-weight: 800;
+            fill: #1f2937;
+        }
+        .gauge-label {
+            font-size: 1.125rem;
+            font-weight: 500;
+            fill: #4b5563;
+        }
+        .tab-button {
+            transition: all 0.2s ease-in-out;
+        }
+        .tab-button.active {
+            background-color: #3b82f6;
+            color: white;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        .score-card {
+            border-left-width: 4px;
+        }
+        .score-good { border-color: #22c55e; }
+        .score-fair { border-color: #f59e0b; }
+        .score-poor { border-color: #ef4444; }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <!-- Header -->
+    <header class="bg-white/80 backdrop-blur-lg sticky top-0 z-50 shadow-sm">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="./index.html" class="text-2xl font-bold text-gray-900">CredAble<span class="text-blue-600">+</span></a>
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="./index.html#features" class="text-gray-600 hover:text-blue-600">Features</a>
+                <a href="./dashboard.html" class="text-blue-600 font-semibold hover:text-blue-600">Dashboard</a>
+                <a href="./index.html#personas" class="text-gray-600 hover:text-blue-600">Personas</a>
+            </div>
+            <a href="./index.html#cta" class="hidden md:inline-block bg-blue-600 text-white font-semibold px-5 py-2 rounded-lg hover:bg-blue-700 transition-colors">Get Early Access</a>
+        </nav>
+    </header>
+
+    <!-- Dashboard Main Content -->
+    <main class="container mx-auto px-6 py-12">
+        <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-2">Your Digital Credit Passport</h1>
+        <p class="text-lg text-gray-600 mb-8">Here's a real-time look at your financial identity, powered by the AltCredit Score Engine™.</p>
+
+        <!-- Main Score Display -->
+        <div class="bg-white p-8 rounded-xl shadow-lg mb-8">
+            <div class="flex flex-col md:flex-row items-center justify-around gap-8">
+                <!-- Gauge -->
+                <div class="flex flex-col items-center">
+                    <div id="main-gauge" class="relative w-72 h-40">
+                        <svg class="w-full h-full" viewBox="0 0 288 160">
+                            <!-- Background Arc -->
+                            <path id="gauge-bg" d="M 24 140 A 120 120 0 0 1 264 140" stroke="#e5e7eb" stroke-width="30" fill="none" />
+                            <!-- Fill Arc -->
+                            <path id="gauge-fill" d="M 24 140 A 120 120 0 0 1 24 140" stroke="#3b82f6" stroke-width="30" fill="none" style="transition: all 1s ease-in-out;"/>
+                            <!-- Score Text -->
+                            <text id="gauge-score-text" x="144" y="115" text-anchor="middle" class="gauge-text">0</text>
+                            <text id="gauge-score-label" x="144" y="140" text-anchor="middle" class="gauge-label">Loading...</text>
+                        </svg>
+                    </div>
+                    <h2 id="main-score-title" class="text-2xl font-bold text-gray-800 mt-2">Global Credit Score</h2>
+                </div>
+                <!-- Score Factors -->
+                <div class="w-full md:w-1/2">
+                    <h3 class="text-xl font-semibold mb-4">What's impacting your score?</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-center">
+                            <svg class="w-5 h-5 text-green-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            <span>Consistent rent payments (+15 pts)</span>
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-5 h-5 text-green-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            <span>Utility bills paid on time (+10 pts)</span>
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-5 h-5 text-yellow-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                            <span>High reliance on one gig platform (-5 pts)</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tabs -->
+        <div class="mb-8">
+            <div id="tabs-container" class="flex flex-wrap items-center justify-center gap-2 md:gap-4 bg-gray-200 p-2 rounded-lg">
+                <button data-tab="country" class="tab-button px-4 py-2 rounded-md font-semibold">Country Scores</button>
+                <button data-tab="loan" class="tab-button px-4 py-2 rounded-md font-semibold">Loan Scores</button>
+            </div>
+        </div>
+
+        <!-- Tab Content -->
+        <div id="tab-content-container" class="bg-white p-8 rounded-xl shadow-lg">
+            <!-- Country Scores Content -->
+            <div id="country-content" class="tab-content">
+                <h3 class="text-xl font-bold mb-6 text-center">Your Equivalent Score in Other Regions</h3>
+                <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
+                    <div class="p-4 rounded-lg bg-gray-50 score-card score-good">
+                        <div class="flex justify-between items-center">
+                            <span class="font-semibold text-lg">United States</span>
+                            <span class="font-bold text-xl text-green-600">745</span>
+                        </div>
+                        <p class="text-sm text-gray-500 mt-1">Equivalent to a 'Good' FICO Score.</p>
+                    </div>
+                    <div class="p-4 rounded-lg bg-gray-50 score-card score-good">
+                        <div class="flex justify-between items-center">
+                            <span class="font-semibold text-lg">Germany</span>
+                            <span class="font-bold text-xl text-green-600">97.8%</span>
+                        </div>
+                        <p class="text-sm text-gray-500 mt-1">Equivalent to a 'Very Good' SCHUFA Score.</p>
+                    </div>
+                    <div class="p-4 rounded-lg bg-gray-50 score-card score-fair">
+                        <div class="flex justify-between items-center">
+                            <span class="font-semibold text-lg">India</span>
+                            <span class="font-bold text-xl text-yellow-600">720</span>
+                        </div>
+                        <p class="text-sm text-gray-500 mt-1">Equivalent to a 'Fair' CIBIL Score.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Loan Scores Content -->
+            <div id="loan-content" class="tab-content hidden">
+                <h3 class="text-xl font-bold mb-6 text-center">Your Readiness for Specific Loans</h3>
+                <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
+                     <div class="p-4 rounded-lg bg-gray-50 score-card score-good">
+                        <div class="flex justify-between items-center">
+                            <span class="font-semibold text-lg">Mortgage / Housing</span>
+                            <span class="font-bold text-lg text-green-600">GOOD</span>
+                        </div>
+                        <p class="text-sm text-gray-500 mt-1">Likely to be approved by major lenders.</p>
+                    </div>
+                    <div class="p-4 rounded-lg bg-gray-50 score-card score-good">
+                        <div class="flex justify-between items-center">
+                            <span class="font-semibold text-lg">Auto / Car Loan</span>
+                            <span class="font-bold text-lg text-green-600">EXCELLENT</span>
+                        </div>
+                        <p class="text-sm text-gray-500 mt-1">Eligible for the best interest rates.</p>
+                    </div>
+                    <div class="p-4 rounded-lg bg-gray-50 score-card score-fair">
+                        <div class="flex justify-between items-center">
+                            <span class="font-semibold text-lg">Personal Loan</span>
+                            <span class="font-bold text-lg text-yellow-600">FAIR</span>
+                        </div>
+                        <p class="text-sm text-gray-500 mt-1">Approval is possible, rates may vary.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const mainScore = 785; // Example score (out of 1000)
+            const minScore = 300;
+            const maxScore = 1000;
+
+            const gaugeFill = document.getElementById('gauge-fill');
+            const gaugeScoreText = document.getElementById('gauge-score-text');
+            const gaugeScoreLabel = document.getElementById('gauge-score-label');
+            const tabsContainer = document.getElementById('tabs-container');
+            const tabContents = document.querySelectorAll('.tab-content');
+
+            /**
+             * Updates the gauge SVG to reflect a given score.
+             * @param {number} score The score to display.
+             * @param {number} min The minimum possible score.
+             * @param {number} max The maximum possible score.
+             */
+            function updateGauge(score, min, max) {
+                const percentage = (score - min) / (max - min);
+                const angle = percentage * 180; // 180 degrees for the semi-circle
+                const endX = 144 - 120 * Math.cos(angle * Math.PI / 180);
+                const endY = 140 - 120 * Math.sin(angle * Math.PI / 180);
+                const largeArcFlag = angle > 180 ? 1 : 0;
+
+                const d = `M 24 140 A 120 120 0 ${largeArcFlag} 1 ${endX} ${endY}`;
+                gaugeFill.setAttribute('d', d);
+
+                // Update color based on score
+                let color = '#ef4444'; // Red (Poor)
+                let label = 'Poor';
+                if (score >= 550 && score < 750) {
+                    color = '#f59e0b'; // Yellow (Fair)
+                    label = 'Fair';
+                } else if (score >= 750) {
+                    color = '#22c55e'; // Green (Good)
+                    label = 'Good';
+                }
+                gaugeFill.setAttribute('stroke', color);
+                gaugeScoreLabel.textContent = label;
+
+                // Animate the score text
+                let currentScore = 0;
+                const interval = setInterval(() => {
+                    if (currentScore >= score) {
+                        clearInterval(interval);
+                        gaugeScoreText.textContent = score;
+                    } else {
+                        currentScore += Math.ceil((score - currentScore) / 10);
+                        gaugeScoreText.textContent = currentScore;
+                    }
+                }, 20);
+            }
+            
+            // Tab switching logic
+            tabsContainer.addEventListener('click', (e) => {
+                if (e.target.classList.contains('tab-button')) {
+                    const tabName = e.target.dataset.tab;
+
+                    // Update active button
+                    tabsContainer.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
+                    e.target.classList.add('active');
+
+                    // Show correct content
+                    tabContents.forEach(content => {
+                        if (content.id === `${tabName}-content`) {
+                            content.classList.remove('hidden');
+                        } else {
+                            content.classList.add('hidden');
+                        }
+                    });
+                }
+            });
+
+            // Initial state
+            updateGauge(mainScore, minScore, maxScore);
+            // Set the first tab as active by default
+            tabsContainer.querySelector('.tab-button[data-tab="country"]').classList.add('active');
+        });
+    </script>
+</body>
+</html>

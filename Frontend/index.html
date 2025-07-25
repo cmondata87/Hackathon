@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CredAble+ | Your Passport to Global Credit and Financial Knowledge</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f9fa;
+        }
+        .hero-gradient {
+            background: linear-gradient(135deg, #0052D4, #4364F7, #6FB1FC);
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .persona-card {
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+        }
+        .glow-effect {
+            box-shadow: 0 0 20px rgba(77, 128, 240, 0.4), 0 0 30px rgba(77, 128, 240, 0.2);
+        }
+        /* Modal styles */
+        .modal-backdrop {
+            transition: opacity 0.3s ease;
+        }
+        .modal-content {
+            transition: transform 0.3s ease;
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <!-- Header -->
+    <header class="bg-white/80 backdrop-blur-lg sticky top-0 z-50 shadow-sm">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-gray-900">CredAble<span class="text-blue-600">+</span></a>
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="#features" class="text-gray-600 hover:text-blue-600">Features</a>
+                <a href="#how-it-works" class="text-gray-600 hover:text-blue-600">How It Works</a>
+                <a href="#personas" class="text-gray-600 hover:text-blue-600">Personas</a>
+                <a href="#tech" class="text-gray-600 hover:text-blue-600">Technology</a>
+            </div>
+            <a href="#cta" class="hidden md:inline-block bg-blue-600 text-white font-semibold px-5 py-2 rounded-lg hover:bg-blue-700 transition-colors">Get Early Access</a>
+            <button id="mobile-menu-button" class="md:hidden">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+        </nav>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4">
+            <a href="#features" class="block py-2 text-gray-600 hover:text-blue-600">Features</a>
+            <a href="#how-it-works" class="block py-2 text-gray-600 hover:text-blue-600">How It Works</a>
+            <a href="#personas" class="block py-2 text-gray-600 hover:text-blue-600">Personas</a>
+            <a href="#tech" class="block py-2 text-gray-600 hover:text-blue-600">Technology</a>
+            <a href="#cta" class="block mt-4 bg-blue-600 text-white text-center font-semibold px-5 py-2 rounded-lg hover:bg-blue-700 transition-colors">Get Early Access</a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <!-- <main>
+        <section class="relative text-white py-20 md:py-32">
+            <div class="absolute inset-0 hero-gradient"></div>
+            <div class="absolute inset-0 bg-black/30"></div>
+            <div class="container mx-auto px-6 text-center relative z-10">
+                <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-4">Your Passport to Global Credit and Financial Knowledge.</h1>
+                <p class="text-lg md:text-xl text-gray-200 max-w-3xl mx-auto mb-8">We're redefining financial identity for the millions who are invisible to the traditional banking system. It's time for a fairer, more inclusive way to access credit and opportunity.</p>
+                <a href="#cta" class="bg-white text-blue-600 font-bold px-8 py-4 rounded-lg text-lg hover:bg-gray-100 transition-transform hover:scale-105">Create Your Passport</a>
+            </div>
+        </section> -->
+
+        <!-- As Featured In -->
+        <!-- <section class="bg-white py-8">
+            <div class="container mx-auto px-6">
+                <p class="text-center text-gray-500 font-medium">IN PARTNERSHIP WITH LEADING INSTITUTIONS</p>
+                <div class="flex justify-center items-center space-x-8 md:space-x-12 mt-4 grayscale opacity-70">
+                    <img src="https://placehold.co/150x50/f0f0f0/cccccc?text=Deutsche+Bank" alt="Deutsche Bank" class="h-8 md:h-10" onerror="this.onerror=null;this.src='https://placehold.co/150x50/f0f0f0/cccccc?text=DB';">
+                    <img src="https://placehold.co/150x50/f0f0f0/cccccc?text=TechCrunch" alt="TechCrunch" class="h-8 md:h-10" onerror="this.onerror=null;this.src='https://placehold.co/150x50/f0f0f0/cccccc?text=TC';">
+                    <img src="https://placehold.co/150x50/f0f0f0/cccccc?text=Forbes" alt="Forbes" class="h-8 md:h-10" onerror="this.onerror=null;this.src='https://placehold.co/150x50/f0f0f0/cccccc?text=Forbes';">
+                    <img src="https://placehold.co/150x50/f0f0f0/cccccc?text=World+Bank" alt="World Bank Group" class="h-8 md:h-10" onerror="this.onerror=null;this.src='https://placehold.co/150x50/f0f0f0/cccccc?text=WB';">
+                </div>
+            </div>
+        </section> -->
+    
+        <section id="meter test 2">
+            
+        <!-- Test meter  2-->
+        <!-- Main Score Display -->
+        <style>
+         body {
+             font-family: 'Inter', sans-serif;
+             background-color: #f1f5f9; /* A slightly cooler gray */
+         }
+         .gauge-container {
+             position: relative;
+             width: 300px;
+             height: 150px;
+             overflow: hidden;
+         }
+         .gauge-bg, .gauge-fill {
+             fill: none;
+             stroke-width: 30;
+             stroke-linecap: round;
+         }
+         .gauge-bg {
+             stroke: #e5e7eb;
+         }
+         .gauge-text {
+             font-size: 4rem;
+             font-weight: 800;
+             fill: #1f2937;
+         }
+         .gauge-label {
+             font-size: 1.125rem;
+             font-weight: 500;
+             fill: #4b5563;
+         }
+         .tab-button {
+             transition: all 0.2s ease-in-out;
+         }
+          .tab-button.active {
+            background-color: #3b82f6;
+            color: white;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+          }
+          .score-card {
+             border-left-width: 4px;
+          }
+
+          .score-good { border-color: #22c55e; }
+          .score-fair { border-color: #f59e0b; }
+          .score-poor { border-color: #ef4444; }
+        </style>
+        
+         <div class="bg-white p-8 rounded-xl shadow-lg mb-8">
+             <div class="flex flex-col md:flex-row items-center justify-around gap-8">
+                 <!-- Gauge -->
+                 <div class="flex flex-col items-center">
+                     <div id="main-gauge" class="relative w-72 h-40">
+                         <svg class="w-full h-full" viewBox="0 0 288 160">
+                             <!-- Background Arc -->
+                             <path id="gauge-bg" d="M 24 140 A 120 120 0 0 1 264 140" stroke="#e5e7eb" stroke-width="30" fill="none" />
+                             <!-- Fill Arc -->
+                             <path id="gauge-fill" d="M 24 140 A 120 120 0 0 1 24 140" stroke="#3b82f6" stroke-width="30" fill="none" style="transition: all 1s ease-in-out;"/>
+                             <!-- Score Text -->
+                             <text id="gauge-score-text" x="144" y="115" text-anchor="middle" class="gauge-text">0</text>
+                             <text id="gauge-score-label" x="144" y="140" text-anchor="middle" class="gauge-label">Loading...</text>
+                         </svg>
+                     </div>
+                     <h2 id="main-score-title" class="text-2xl font-bold text-gray-800 mt-2">Global Credit Score</h2>
+                 </div>
+             </div>
+         </div>
+        </section>
+    
+        <!-- Features Section -->
+        <section id="features" class="py-20">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900">A Complete Financial Empowerment Toolkit</h2>
+                    <p class="text-lg text-gray-600 mt-2 max-w-2xl mx-auto">CredAble+ is more than a score. It's an ecosystem of tools designed to build your financial identity and confidence.</p>
+                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Feature Cards -->
+                    <div class="bg-white p-6 rounded-xl shadow-md transition-all feature-card">
+                        <div class="flex items-center justify-center h-12 w-12 rounded-full bg-blue-100 text-blue-600 mb-4">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">AltCredit Score Engine™</h3>
+                        <p class="text-gray-600">Our AI analyzes non-traditional data like rent payments, utility bills, and gig work history to create a fair, forward-looking credit score.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-md transition-all feature-card" onclick="window.location.href='creditscore.html';" style="cursor: pointer;">
+                        <div class="flex items-center justify-center h-12 w-12 rounded-full bg-green-100 text-green-600 mb-4">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z">
+                            </path>
+                            </svg>
+                        </div>
+                    <h3 class="text-xl font-bold mb-2">Digital Credit</h3>
+                    <p class="text-gray-600">
+                        A portable, verifiable financial identity that works across borders. Perfect for migrants, freelancers, and digital nomads.
+                    </p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-md transition-all feature-card">
+                        <div class="flex items-center justify-center h-12 w-12 rounded-full bg-purple-100 text-purple-600 mb-4">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">AI Financial Coach</h3>
+                        <p class="text-gray-600">Get personalized, 24/7 guidance via chat. Our AI understands your context and helps you make smarter financial decisions.</p>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-xl shadow-md transition-all feature-card"onclick="window.location.href='FinancialLiteracyHub.html';"style="cursor: pointer;">
+                         <div class="flex items-center justify-center h-12 w-12 rounded-full bg-yellow-100 text-yellow-600 mb-4">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253">
+                                </path>
+                            </svg>
+                         </div>
+                        <h3 class="text-xl font-bold mb-2">Financial Literacy Hub</h3>
+                        <p class="text-gray-600">Access gamified, multilingual micro-courses on budgeting, saving, and business planning, tailored to your region and goals.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-md transition-all feature-card">
+                        <div class="flex items-center justify-center h-12 w-12 rounded-full bg-red-100 text-red-600 mb-4">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">SME Toolkit</h3>
+                        <p class="text-gray-600">For small business owners, we offer tools for budget planning, invoice financing suggestions, and AI-prompted funding eligibility.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-md transition-all feature-card">
+                        <div class="flex items-center justify-center h-12 w-12 rounded-full bg-indigo-100 text-indigo-600 mb-4">
+                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Accessibility First</h3>
+                        <p class="text-gray-600">Designed for everyone. Our platform includes voice support, clear visual design, and simple navigation for users of all abilities.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- How It Works Section -->
+        <section id="how-it-works" class="py-20 bg-white">
+             <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900">Get Started in 3 Simple Steps</h2>
+                    <p class="text-lg text-gray-600 mt-2">Your journey to financial opportunity is easier than you think.</p>
+                </div>
+                <div class="relative">
+                    <div class="hidden md:block absolute top-1/2 left-0 w-full h-0.5 bg-gray-200" style="transform: translateY(-50%);"></div>
+                    <div class="grid md:grid-cols-3 gap-12 relative">
+                        <div class="text-center">
+                            <div class="relative mb-4 inline-block">
+                                <div class="flex items-center justify-center h-20 w-20 rounded-full bg-blue-600 text-white text-2xl font-bold shadow-lg glow-effect">1</div>
+                            </div>
+                            <h3 class="text-xl font-bold mb-2">Sign Up & Connect</h3>
+                            <p class="text-gray-600">Create your secure profile and give consent to connect non-traditional data sources with a few taps.</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="relative mb-4 inline-block">
+                                <div class="flex items-center justify-center h-20 w-20 rounded-full bg-blue-600 text-white text-2xl font-bold shadow-lg glow-effect">2</div>
+                            </div>
+                            <h3 class="text-xl font-bold mb-2">Build Your Passport</h3>
+                            <p class="text-gray-600">Our engine analyzes your data and generates your AltCredit score, creating your Digital Credit Passport in real-time.</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="relative mb-4 inline-block">
+                                <div class="flex items-center justify-center h-20 w-20 rounded-full bg-blue-600 text-white text-2xl font-bold shadow-lg glow-effect">3</div>
+                            </div>
+                            <h3 class="text-xl font-bold mb-2">Learn & Unlock</h3>
+                            <p class="text-gray-600">Engage with the AI Coach and Literacy Hub to improve your score and unlock real financial products from our partners.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Personas Section -->
+        <section id="personas" class="py-20">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900">Built For People Like You</h2>
+                    <p class="text-lg text-gray-600 mt-2 max-w-2xl mx-auto">We serve a diverse global community, from freelancers in Manila to small business owners in Nairobi.</p>
+                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="persona-card rounded-lg p-6 text-center">
+                        <img src="https://placehold.co/100x100/E2E8F0/4A5568?text=👩‍💻" class="w-24 h-24 rounded-full mx-auto mb-4" alt="Freelancer" onerror="this.onerror=null;this.src='https://placehold.co/100x100/E2E8F0/4A5568?text=F';">
+                        <h4 class="font-bold text-lg">The Freelancer</h4>
+                        <p class="text-gray-500 text-sm mb-2">Latin America & Asia</p>
+                        <p class="text-gray-600">Uses their gig work history to build a credit profile and get loans for new equipment.</p>
+                    </div>
+                    <div class="persona-card rounded-lg p-6 text-center">
+                        <img src="https://placehold.co/100x100/E2E8F0/4A5568?text=🌍" class="w-24 h-24 rounded-full mx-auto mb-4" alt="Migrant" onerror="this.onerror=null;this.src='https://placehold.co/100x100/E2E8F0/4A5568?text=M';">
+                        <h4 class="font-bold text-lg">The Migrant</h4>
+                        <p class="text-gray-500 text-sm mb-2">EU & North America</p>
+                        <p class="text-gray-600">Carries their financial identity across borders to rent an apartment and get a phone plan.</p>
+                    </div>
+                    <div class="persona-card rounded-lg p-6 text-center">
+                        <img src="https://placehold.co/100x100/E2E8F0/4A5568?text=📈" class="w-24 h-24 rounded-full mx-auto mb-4" alt="SME Owner" onerror="this.onerror=null;this.src='https://placehold.co/100x100/E2E8F0/4A5568?text=SME';">
+                        <h4 class="font-bold text-lg">The SME Owner</h4>
+                        <p class="text-gray-500 text-sm mb-2">Africa & SE Asia</p>
+                        <p class="text-gray-600">Leverages business data to access micro-loans and expand their local business.</p>
+                    </div>
+                    <div class="persona-card rounded-lg p-6 text-center">
+                        <img src="https://placehold.co/100x100/E2E8F0/4A5568?text=🎓" class="w-24 h-24 rounded-full mx-auto mb-4" alt="Student" onerror="this.onerror=null;this.src='https://placehold.co/100x100/E2E8F0/4A5568?text=GenZ';">
+                        <h4 class="font-bold text-lg">The Gen Z Student</h4>
+                        <p class="text-gray-500 text-sm mb-2">Global</p>
+                        <p class="text-gray-600">Starts their financial journey on the right foot, building a positive financial identity before they graduate.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tech Stack Section -->
+        <section id="tech" class="py-20 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900">Powered by World-Class Technology</h2>
+                    <p class="text-lg text-gray-600 mt-2">We use a secure, scalable, and AI-driven stack to protect your data and deliver powerful insights.</p>
+                </div>
+                <div class="flex flex-wrap justify-center items-center gap-x-8 gap-y-6 md:gap-x-16 grayscale opacity-75">
+                    <img src="https://placehold.co/150x60/f0f0f0/cccccc?text=Google+Cloud" alt="Google Cloud" class="h-12" onerror="this.onerror=null;this.src='https://placehold.co/150x60/f0f0f0/cccccc?text=GCP';">
+                    <img src="https://placehold.co/150x60/f0f0f0/cccccc?text=Microsoft+Azure" alt="Microsoft Azure" class="h-12" onerror="this.onerror=null;this.src='https://placehold.co/150x60/f0f0f0/cccccc?text=Azure';">
+                    <img src="https://placehold.co/150x60/f0f0f0/cccccc?text=OpenAI" alt="OpenAI" class="h-12" onerror="this.onerror=null;this.src='https://placehold.co/150x60/f0f0f0/cccccc?text=OpenAI';">
+                    <img src="https://placehold.co/150x60/f0f0f0/cccccc?text=Red+Hat+OpenShift" alt="Red Hat OpenShift" class="h-12" onerror="this.onerror=null;this.src='https://placehold.co/150x60/f0f0f0/cccccc?text=OpenShift';">
+                    <img src="https://placehold.co/150x60/f0f0f0/cccccc?text=Firebase" alt="Firebase" class="h-12" onerror="this.onerror=null;this.src='https://placehold.co/150x60/f0f0f0/cccccc?text=Firebase';">
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section id="cta" class="hero-gradient">
+            <div class="container mx-auto px-6 py-20 text-center text-white">
+                <div id="cta-content">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Ready to Unlock Your Financial Future?</h2>
+                    <p class="text-lg text-gray-200 max-w-2xl mx-auto mb-8">Join the waitlist to be among the first to create your Digital Credit Passport. Be part of a new era of financial inclusion.</p>
+                    <form id="waitlist-form" class="max-w-md mx-auto flex flex-col sm:flex-row gap-4">
+                        <input id="email-input" type="email" placeholder="Enter your email address" class="w-full px-5 py-3 rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-white" required>
+                        <button id="submit-button" type="submit" class="bg-white text-blue-600 font-bold px-8 py-3 rounded-lg hover:bg-gray-100 transition-transform hover:scale-105">Get Early Access</button>
+                    </form>
+                </div>
+                 <div id="success-message" class="hidden text-center">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Thank You! 🎉</h2>
+                    <p class="text-lg text-gray-200 max-w-2xl mx-auto">You're on the list! We'll notify you as soon as CredAble+ is available.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white">
+        <div class="container mx-auto px-6 py-12">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold">CredAble<span class="text-blue-400">+</span></h3>
+                    <p class="mt-2 text-gray-400">Beyond Scores. Toward Opportunity.</p>
+                </div>
+                <div class="md:col-span-2 grid grid-cols-2 sm:grid-cols-4 gap-8">
+                    <div>
+                        <h4 class="font-semibold">Product</h4>
+                        <ul class="mt-4 space-y-2">
+                            <li><a href="#features" class="text-gray-400 hover:text-white">Features</a></li>
+                            <li><a href="#personas" class="text-gray-400 hover:text-white">Personas</a></li>
+                            <li><a href="#cta" class="text-gray-400 hover:text-white">Early Access</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold">Company</h4>
+                        <ul class="mt-4 space-y-2">
+                            <li><a href="#" class="text-gray-400 hover:text-white">About Us</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-white">Careers</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-white">Press</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold">Legal</h4>
+                        <ul class="mt-4 space-y-2">
+                            <li><a href="#" class="text-gray-400 hover:text-white">Privacy Policy</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-white">Terms of Service</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold">Connect</h4>
+                        <ul class="mt-4 space-y-2">
+                            <li><a href="#" class="text-gray-400 hover:text-white">Twitter</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-white">LinkedIn</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-12 border-t border-gray-700 pt-8 text-center text-gray-500">
+                <p>&copy; 2025 CredAble+. All rights reserved. A Hackathon Project.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal for notifications -->
+    <div id="notification-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 p-4 modal-backdrop opacity-0 pointer-events-none">
+        <div class="bg-white rounded-lg shadow-xl p-6 w-full max-w-sm text-center modal-content scale-95">
+            <h3 id="modal-title" class="text-xl font-bold mb-2"></h3>
+            <p id="modal-message" class="text-gray-600 mb-4"></p>
+            <button id="modal-close-button" class="bg-blue-600 text-white font-semibold px-5 py-2 rounded-lg hover:bg-blue-700 transition-colors">Close</button>
+        </div>
+    </div>
+
+    <!-- Firebase and App Logic -->
+    <script type="module">
+        // Firebase Imports
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        // --- Firebase Configuration ---
+        // These variables are placeholders and will be provided by the environment.
+        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : { apiKey: "DEMO", authDomain: "DEMO", projectId: "DEMO" };
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'credable-plus-demo';
+
+        // --- Initialize Firebase ---
+        let app, auth, db;
+        try {
+            app = initializeApp(firebaseConfig);
+            auth = getAuth(app);
+            db = getFirestore(app);
+            console.log("Firebase initialized successfully.");
+        } catch (e) {
+            console.error("Error initializing Firebase:", e);
+            showModal("Error", "Could not connect to the backend. Please try again later.");
+        }
+
+        // --- Authentication ---
+        // Sign in the user anonymously or with a custom token if provided.
+        // This is necessary to satisfy Firestore security rules.
+        (async () => {
+            try {
+                if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+                    await signInWithCustomToken(auth, __initial_auth_token);
+                    console.log("Signed in with custom token.");
+                } else {
+                    await signInAnonymously(auth);
+                    console.log("Signed in anonymously.");
+                }
+            } catch (error) {
+                console.error("Authentication failed:", error);
+                showModal("Authentication Error", "Could not authenticate the session.");
+            }
+        })();
+
+
+        // --- DOM Elements ---
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const waitlistForm = document.getElementById('waitlist-form');
+        const emailInput = document.getElementById('email-input');
+        const submitButton = document.getElementById('submit-button');
+        const ctaContent = document.getElementById('cta-content');
+        const successMessage = document.getElementById('success-message');
+        
+        // Modal elements
+        const modal = document.getElementById('notification-modal');
+        const modalTitle = document.getElementById('modal-title');
+        const modalMessage = document.getElementById('modal-message');
+        const modalCloseButton = document.getElementById('modal-close-button');
+
+        // --- Event Listeners ---
+
+        // Mobile menu toggle
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when a link is clicked
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Handle waitlist form submission
+        waitlistForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            if (!db) {
+                showModal("Error", "Database connection is not available.");
+                return;
+            }
+            
+            const email = emailInput.value.trim();
+            if (!email) {
+                showModal("Invalid Input", "Please enter a valid email address.");
+                return;
+            }
+
+            // Provide user feedback
+            submitButton.disabled = true;
+            submitButton.textContent = 'Submitting...';
+
+            try {
+                // The path to the public collection where waitlist data will be stored.
+                const collectionPath = `/artifacts/${appId}/public/data/waitlistSignups`;
+                const waitlistCollection = collection(db, collectionPath);
+
+                // Add the new email to the collection
+                await addDoc(waitlistCollection, {
+                    email: email,
+                    submittedAt: serverTimestamp()
+                });
+
+                console.log("Email successfully added to waitlist:", email);
+                
+                // Show success message
+                ctaContent.classList.add('hidden');
+                successMessage.classList.remove('hidden');
+
+            } catch (error) {
+                console.error("Error adding document: ", error);
+                showModal("Submission Error", "Something went wrong. Please try again.");
+                // Re-enable the button on error
+                submitButton.disabled = false;
+                submitButton.textContent = 'Get Early Access';
+            }
+        });
+        
+        // Modal close button
+        modalCloseButton.addEventListener('click', hideModal);
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                hideModal();
+            }
+        });
+
+
+        // --- Helper Functions ---
+
+        /**
+         * Shows the notification modal with a title and message.
+         * @param {string} title - The title for the modal.
+         * @param {string} message - The message content for the modal.
+         */
+        function showModal(title, message) {
+            modalTitle.textContent = title;
+            modalMessage.textContent = message;
+            modal.classList.remove('opacity-0', 'pointer-events-none');
+            modal.querySelector('.modal-content').classList.remove('scale-95');
+        }
+
+        /**
+         * Hides the notification modal.
+         */
+        function hideModal() {
+            modal.classList.add('opacity-0');
+            modal.querySelector('.modal-content').classList.add('scale-95');
+            setTimeout(() => {
+                 modal.classList.add('pointer-events-none');
+            }, 300); // Wait for transition to finish
+        }
+
+    </script>
+    
+
+</body>
+</html>
+
+  </style>
+
+  <div id="credit-meter">
+    <span class="label">Credit Score:</span>
+    <svg width="300" height="150" viewBox="0 0 300 150" class="donut-chart">
+      <path
+        class="donut-bg"
+        d="M 30 150 A 120 120 0 0 1 270 150"
+      />
+      <path
+        id="donut-fill"
+        class="donut-fill"
+        d="M 30 150 A 120 120 0 0 1 270 150"
+        stroke-dasharray="377"
+        stroke-dashoffset="94" <!-- Initial: 75% -->
+      />
+    </svg>
+    <div id="credit-count">75 / 100</div>
+  </div>
+
+  <script>
+    function updateCredits(current, total) {
+      const percentage = current / total;
+      const circle = document.getElementById("donut-fill");
+
+      const fullLength = 377; // Approx. length of the half-circle path
+      const offset = fullLength * (1 - percentage);
+
+      circle.style.strokeDashoffset = offset;
+      document.getElementById("credit-count").textContent = `${current} / ${total}`;
+    }
+
+    // Simulate update after 3s
+    setTimeout(() => updateCredits(60, 100), 3000); // Drops to 60 after 3 seconds
+  </script>
+</section>

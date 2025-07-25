@@ -1,0 +1,4 @@
+# /financial-coach-backend/requirements.txt
+functions-framework==3.*
+google-cloud-aiplatform>=1.38.0
+flask>=2.0

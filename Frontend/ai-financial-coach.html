@@ -1,0 +1,218 @@
+!DOCTYPE html
+html lang=en
+head
+    meta charset=UTF-8
+    meta name=viewport content=width=device-width, initial-scale=1.0
+    titleAI Financial Coach  CredAble+title
+    script src=httpscdn.tailwindcss.comscript
+    link href=httpsfonts.googleapis.comcss2family=Interwght@400;500;600;700;800&display=swap rel=stylesheet
+    style
+        body { font-family 'Inter', sans-serif; }
+        .chat-bubble-ai { background-color #eef2ff; color #1e293b; align-self flex-start; }
+        .chat-bubble-user { background-color #3b82f6; color white; align-self flex-end; }
+        .chat-bubble { max-width 80%; animation slide-in 0.3s ease-out forwards; }
+        @keyframes slide-in {
+            from { opacity 0; transform translateY(10px); }
+            to { opacity 1; transform translateY(0); }
+        }
+        #voice-button.recording { background-color #ef4444; }
+        .action-button {
+            background-color #fff;
+            border 1px solid #3b82f6;
+            color #3b82f6;
+            transition all 0.2s ease;
+        }
+        .action-buttonhover {
+            background-color #3b82f6;
+            color white;
+        }
+        .thermometer {
+            width 20px;
+            height 120px;
+            background-color #e5e7eb;
+            border-radius 20px;
+            position relative;
+            border 3px solid #d1d5db;
+        }
+        .thermometer-progress {
+            background linear-gradient(to bottom, #f59e0b, #ef4444);
+            position absolute;
+            bottom 0;
+            width 100%;
+            border-radius 20px;
+            transition height 1s ease-in-out;
+        }
+    style
+head
+body class=bg-gray-100 flex flex-col h-screen
+
+    header class=bg-white shadow-sm p-4 flex justify-between items-center
+        a href=.index.html class=text-2xl font-bold text-gray-900CredAblespan class=text-blue-600+spana
+        div class=flex items-center gap-4
+            button id=reset-demo-button class=text-xs text-gray-500 hovertext-red-500Reset Demobutton
+            div class=relative
+                select id=language-selector class=appearance-none bg-gray-100 border border-gray-300 rounded-md py-2 pl-3 pr-8 text-sm font-medium text-gray-700 hoverbg-gray-200 focusoutline-none focusring-2 focusring-blue-500
+                    option value=en-US🇺🇸 English (US)option
+                    option value=de-DE🇩🇪 Deutsch (DE)option
+                    option value=es-MX🇲🇽 Español (MX)option
+                select
+                div class=pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700
+                    svg class=fill-current h-4 w-4 xmlns=httpwww.w3.org2000svg viewBox=0 0 20 20path d=M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8zsvg
+                div
+            div
+        div
+    header
+
+    main id=chat-container class=flex-1 p-6 overflow-y-auto flex flex-col space-y-4
+        !-- Chat messages will be appended here --
+    main
+
+    footer class=bg-white p-4 border-t
+        div class=container mx-auto
+            div class=flex items-center gap-2 mb-2
+                label for=loan-file-upload class=flex-1 cursor-pointer text-sm font-medium text-blue-600 bg-blue-100 hoverbg-blue-200 rounded-full px-4 py-2 text-center data-key=loan_analyzer_button✨ Upload & Analyze Loan Documentlabel
+                input type=file id=loan-file-upload class=hidden accept=.csv, applicationvnd.openxmlformats-officedocument.spreadsheetml.sheet, applicationvnd.ms-excel
+            div
+            div class=flex items-center gap-2
+                input type=text id=chat-input placeholder=Ask me anything about your finances... class=flex-1 w-full px-4 py-3 rounded-full border-gray-300 focusring-blue-500 focusborder-blue-500 data-key=chat_placeholder
+                button id=voice-button class=bg-blue-600 text-white rounded-full w-12 h-12 flex-shrink-0 flex items-center justify-center hoverbg-blue-700 transition-colors
+                    svg class=w-6 h-6 fill=none stroke=currentColor viewBox=0 0 24 24path stroke-linecap=round stroke-linejoin=round stroke-width=2 d=M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3zpathsvg
+                button
+            div
+        div
+    footer
+
+    script
+         --- Global Scope Variables (non-DOM) ---
+        let conversationHistory = [];
+        const translations = {
+            'en-US' {
+                welcome_message Hello! I'm your AI Financial Coach. How can I help you today,
+                loan_analyzer_button ✨ Upload & Analyze Loan Document,
+                chat_placeholder Ask me anything about your finances...,
+                listening Listening...,
+                proactive_goal_prompt I notice you haven't set up a financial goal yet. A great first step is creating a budget to track your income and expenses. Would you like my help with that,
+                yes_button Yes, help me budget,
+                no_button No, thanks,
+                budget_follow_up Great! To get started, let's connect your bank account or you can begin by manually logging your monthly income and recurring expenses. Which would you prefer,
+            },
+            'de-DE' {  German translations  },
+            'es-MX' {  Spanish translations  }
+        };
+        const synth = window.speechSynthesis;
+        const SpeechRecognition = window.SpeechRecognition  window.webkitSpeechRecognition;
+        const recognition = SpeechRecognition  new SpeechRecognition()  null;
+
+         --- DOM Element Variables (to be assigned in DOMContentLoaded) ---
+        let chatContainer, chatInput, voiceButton, loanFileUploadInput, languageSelector, resetDemoButton;
+
+         --- Function Definitions ---
+        function setLanguage(lang) {
+            const trans = translations[lang]  translations['en-US'];
+            document.querySelectorAll('[data-key]').forEach(el = {
+                const key = el.getAttribute('data-key');
+                if (trans[key]) {
+                    if (el.tagName === 'INPUT') {
+                        el.placeholder = trans[key];
+                    } else {
+                        el.textContent = trans[key];
+                    }
+                }
+            });
+            if (languageSelector) languageSelector.value = lang;
+            localStorage.setItem('credable-lang', lang);
+            if (recognition) recognition.lang = lang;
+        }
+
+        function addMessage(content, sender, isLoading = false, hasActions = false) {
+            const bubble = document.createElement('div');
+            bubble.className = `chat-bubble p-4 rounded-2xl ${sender === 'ai'  'chat-bubble-ai'  'chat-bubble-user'}`;
+            
+            let messageHTML = '';
+            if (isLoading) {
+                messageHTML = `div class=flex items-centerdiv class=w-2 h-2 bg-blue-500 rounded-full animate-pulse mr-2divdiv class=w-2 h-2 bg-blue-500 rounded-full animate-pulse delay-75 mr-2divdiv class=w-2 h-2 bg-blue-500 rounded-full animate-pulse delay-150divdiv`;
+            } else {
+                messageHTML = content;
+            }
+
+            if (hasActions) {
+                const lang = localStorage.getItem('credable-lang')  'en-US';
+                const trans = translations[lang];
+                messageHTML += `
+                    div class=mt-4 flex gap-2
+                        button class=action-button flex-1 rounded-full px-3 py-1 text-sm font-semibold data-action=start-budget${trans.yes_button}button
+                        button class=action-button flex-1 rounded-full px-3 py-1 text-sm font-semibold data-action=decline-budget${trans.no_button}button
+                    div
+                `;
+            }
+            
+            bubble.innerHTML = messageHTML;
+            chatContainer.appendChild(bubble);
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+            return bubble;
+        }
+
+        function speak(text) {
+            if (!synth) return;
+            if (synth.speaking) {
+                console.error('speechSynthesis is already speaking.');
+                return;
+            }
+            const utterThis = new SpeechSynthesisUtterance(text);
+            utterThis.lang = languageSelector.value;
+            synth.speak(utterThis);
+        }
+
+        async function handleUserMessage(message) {
+            if (!message.trim()) return;
+            addMessage(message, 'user');
+            conversationHistory.push({ role 'user', parts [{ text message }] });
+            chatInput.value = '';
+            const loadingBubble = addMessage('', 'ai', true);
+
+            const prompt = `You are a friendly and helpful AI Financial Coach. A user speaking ${languageSelector.value} said ${message}. Provide a concise, helpful, and culturally aware response. This is our conversation history ${JSON.stringify(conversationHistory)}`;
+            const response = await callVertexAI(prompt, 'text');
+            
+            conversationHistory.push({ role 'model', parts [{ text response }] });
+            if(conversationHistory.length  6) {
+                conversationHistory = conversationHistory.slice(-6);
+            }
+
+            loadingBubble.remove();
+            addMessage(response, 'ai');
+            speak(response);
+        }
+
+        async function checkAndTriggerProactiveAgent() {
+            const goal = JSON.parse(localStorage.getItem('financialGoal'));
+
+            if (goal && goal.status === 'in-progress') {
+                const loadingBubble = addMessage('', 'ai', true);
+                const prompt = `Act as an encouraging AI financial coach. A user named ${goal.userName} set a goal to ${goal.goalText} on ${goal.startDate}. It is now 6 months later. Their progress is ${goal.progress}%. Generate a personalized progress report. The response must be a JSON object with keys greeting, progressSummary, keepDoing (an array of 2 strings), and stopDoing (an array of 1 string).`;
+                
+                const responseJson = await callVertexAI(prompt, 'goal_update');
+                const report = JSON.parse(responseJson);
+                
+                const reportHTML = `
+                    div class=flex gap-4
+                        div class=flex-1
+                            p class=font-bold text-lg${report.greeting}p
+                            p class=mt-2 text-sm${report.progressSummary}p
+                            div class=mt-4
+                                h5 class=font-semibold text-sm text-green-600Keep it up!h5
+                                ul class=text-xs list-disc list-inside
+                                    ${report.keepDoing.map(item = `li${item}li`).join('')}
+                                ul
+                            div
+                            div class=mt-2
+                                h5 class=font-semibold text-sm text-yellow-600Things to watchh5
+                                ul class=text-xs list-disc list-inside
+                                    ${report.stopDoing.map(item = `li${item}li`).join('')}
+                                ul
+                            div
+                        div
+                        div class=flex flex-col items-center
+                            div class=thermometer
+                                div class=thermometer-progress style=height ${goal.progress}%;div
+                            div
+                            p class=font-bold text-xl mt-2${g
